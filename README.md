@@ -10,7 +10,7 @@ The datasets we used in our evaluation can be access after sending a request for
 the Abusive Dataset send an access request using the following link https://zenodo.org/record/3706866#.Y90_X-xBxJU.
 
 # 2. Data preprocessing
-The script text_preprocessing.py
+The script preprocess_dataset.py
 
 
 
