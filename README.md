@@ -16,11 +16,18 @@ The script preprocess_dataset.py contains the code used for preprocessing the tw
 The script FL_scrip.py contains the code used for 
 
 a) splitting the preprocessed dataset to train and test sets
+
 b) distribute the train data to a number of clients -- simulate the federated train set
+
 c) prepare the settings for the DP-FL simulation
+
 d) execute the DP-FL training
+
 f) evalaute the global model
 
+For (c) and (d) we follow the following tensorflow federated tutorials: 
+1. https://www.tensorflow.org/federated/tutorials/federated_learning_for_image_classification (for Federated Learning simulation)
+2. https://www.tensorflow.org/federated/tutorials/federated_learning_with_differential_privacy (for Differential Privacy)
 
 
 
