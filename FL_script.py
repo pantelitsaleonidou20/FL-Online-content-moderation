@@ -1,23 +1,19 @@
 import pandas as pd
 import random
-import spacy
+#import spacy
 import numpy as np
 import math
-import nltk
 import seaborn as sns
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import seaborn as sns
-from tensorflow.keras import activations
 from importlib import reload
 import sys
-import tensorflow_federated as tff
 from importlib import reload
 import warnings
 import collections
-import re
-#from nltk.stem import WordNetLemmatizer
-#from nltk.corpus import stopwords
+#import re
+import tensorflow_federated as tff
 import tensorflow as tf
 import tensorflow.keras as keras
 from tensorflow.keras.preprocessing.text import Tokenizer
@@ -25,8 +21,8 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.layers import Concatenate, Dense, Input, LSTM, Embedding, Dropout, Activation, GRU, Flatten
 from tensorflow.keras.layers import Bidirectional, GlobalMaxPool1D
 from tensorflow.keras.models import Model, Sequential
-from tensorflow.keras.layers import Convolution1D
-from tensorflow.keras import initializers, regularizers, constraints, optimizers, layers
+#from tensorflow.keras.layers import Convolution1D
+from tensorflow.keras import initializers, regularizers, constraints, optimizers, layers, activations
 import os
 from collections import OrderedDict
 from datetime import datetime
@@ -563,21 +559,18 @@ history = list()
 history_val = list()
 valid_test = list()
 
-#no_clients_in_fl = 21
 
 #uncomment to have the same clients in all fl rounds
+#no_clients_in_fl = 21
 #train_data = random_selected_federated_data(train_dataset,no_clients_in_fl)
-
-#print("Train clients: ", NUM_OF_SIMULATED_CLIENTS)#, "Test clietns: ", NUM_OF_TEST_CLIENTS)
-
 
 
 # We use Poisson subsampling which gives slightly tighter privacy guarantees
 # compared to having a fixed number of clients per round. The actual number of
- # clients per round is stochastic with mean clients_per_round.
-
+# clients per round is stochastic with mean clients_per_round.
 total_clients = NUM_OF_SIMULATED_CLIENTS
 sampling_prob = clients_per_round / total_clients
+
 
 out_file = open('rep'+str(sys.argv[1])+"/test_evaluation_metrics_every_ten_rounds.txt", "a+", encoding='utf-8')
 out_file.write("Repetition\tRound_Number\tAccuracy\tPrecision\tRecall\tAUC\tF1-score\tLoss\n")
@@ -601,7 +594,7 @@ for round_num in range(0, NUM_ROUNDS):
     train_data = make_federated_data(train_dataset, sampled_clients)
 
 
-    #uncomment to have randomly selected(different) clients in each fl round
+    #uncomment to have X randomly selected (different) clients in each fl round
     #train_data=random_selected_federated_data(train_dataset,no_clients_in_fl)
     
     start_time = datetime.now()
@@ -685,28 +678,6 @@ for round_num in range(0, NUM_ROUNDS):
         #calculate performance evaluation metrics at the end of the round
         performance_evaluation(y_test,y_pred_class,"rep"+str(sys.argv[1])+"/test_evaluation_metrics_every_ten_rounds.txt")
 
-        # compute the evaluation metrics
-        #recall = recall_score(y_test, y_pred_class.round(), average="weighted")
-        #precision = precision_score(y_test, y_pred_class.round(), average="weighted")
-        #f1_score = f1_score(y_test, y_pred_class.round(), average="weighted")
-        #auc = roc_auc_score(y_test, y_pred_class.round(), average="weighted")
-        #accuracy = accuracy_score(y_test, y_pred_class.round())
-        #loss = log_loss(y_test, y_pred_class)
-
-        #print("Testing Performance:\n")
-        #print("Confusion Matrix: ", cf_matrix)
-        #print("Accuracy:\t", str(accuracy))
-        #print("Precision:\t", precision)
-        #print("Recall:\t", recall)
-        #print("F1_score:\t", f1_score)
-        #print("AUC:\t", str(auc))
-        #print('loss:\t', str(loss))
-
-        #out_file = open('rep'+str(sys.argv[1])+"/round_test_results.txt", "a+", encoding='utf-8')
-        #out_file.write(str(sys.argv[1]) +"\t"+str(round_num)+ "\t" + str(accuracy) + "\t" + str(precision) + "\t" + str(recall) + "\t" + str(
-        #auc) + "\t" + str(f1_score) + "\t" + str(loss) + "\n")
-    #out_file.close()
-
 
 #write training evaluation metrics in a file
 with open('rep'+str(sys.argv[1])+'/train_evaluation_end_of_FL_round.txt', 'w') as fout:
@@ -743,29 +714,7 @@ out_file = open("final_test_evaluation_metrics.txt", "a+", encoding='utf-8')
 out_file.write("Repetition\tAccuracy\tPrecision\tRecall\tAUC\tF1-score\tLoss\n")
 out_file.close()
 performance_evaluation(y_test,y_pred_class,"final_test_evaluation_metrics.txt")
-#out_file.write("Repetition\tAccuracy\tPrecision\tRecall\tAUC\tF1-score\tLoss\n")
-#out_file.write(str(sys.argv[1])+"\t"+str(accuracy)+"\t"+str(precision)+"\t"+str(recall)+"\t"+str(auc)+"\t"+str(f1_score)+"\t"+str(loss)+"\n")
 
-
-
-#compute the test evaluation metrics
-#recall = recall_score(y_test, y_pred_class.round(),average="weighted")
-#precision = precision_score(y_test, y_pred_class.round(),average="weighted")
-#f1_score = f1_score(y_test,y_pred_class.round(),average="weighted")
-#auc = roc_auc_score(y_test, y_pred_class.round(), average="weighted")
-#accuracy = accuracy_score(y_test, y_pred_class.round())
-#loss = log_loss(y_test, y_pred_class)
-
-
-
-#print("Testing Performance:\n")
-#print("Confusion Matrix: ", cf_matrix)
-#print("Accuracy:\t",str(accuracy))
-#print("Precision:\t", precision)
-#print("Recall:\t", recall)
-#print("F1_score:\t",f1_score)
-#print("AUC:\t",str(auc) )
-#print('loss:\t',str(loss))
 
 
 
