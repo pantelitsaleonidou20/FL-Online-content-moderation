@@ -13,19 +13,19 @@ the Abusive Dataset send an access request using the following link https://zeno
 The script preprocess_dataset.py contains the code used for preprocessing the tweet texts to prepare the data for the training task.
 
 # 3. Differential Private Federated Learing Simulation
-The script FL_scrip.py contains the code used for 
+The script FL_scrip.py contains the code used for:
 
-a) splitting the preprocessed dataset to train and test sets
+1) splitting the preprocessed dataset to train and test sets
 
-b) distribute the train data to a number of clients -- simulate the federated train set
+2) distribute the train data to a number of clients -- simulate the federated train set
 
-c) prepare the settings for the DP-FL simulation
+3) prepare the settings for the DP-FL simulation
 
-d) execute the DP-FL training
+4) execute the DP-FL training
 
-f) evalaute the global model
+5) evalaute the global model
 
-For (c) and (d) we follow the following tensorflow federated tutorials: 
+For (3) and (4) we follow the following tensorflow federated tutorials: 
 1. https://www.tensorflow.org/federated/tutorials/federated_learning_for_image_classification (for Federated Learning simulation)
 2. https://www.tensorflow.org/federated/tutorials/federated_learning_with_differential_privacy (for Differential Privacy)
 
