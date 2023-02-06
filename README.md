@@ -39,7 +39,12 @@ The script FL_scrip.py contains the code used for:
 
 3) Glove pretrained word vectors loading, prepare the GloVe embeddings for the Classifiers Embedding Layer
 
-4) Build the text classifier - a simplified version of the classifier proposed in Antigoni Maria Founta, Despoina Chatzakou, Nicolas Kourtellis, Jeremy Blackburn, Athena Vakali, and Ilias Leontiadis. 2019. A Unified Deep Learning Architecture for Abuse Detection. In Proceedings of the 10th ACM Conference on Web Science (WebSci '19). https://doi.org/10.1145/3292522.3326028
+4) Build the text classifier pipeline:
+   - Embedding Layer (GloVe embeddings - 200d)
+   - Recurrent Neural Network (RNN) Layer with gated recurrent unit (GRU) -- 28 units, and a dropout of p=0.5
+   - Classification Dense Layer with one neuron with the sigmoid activation function.
+
+The classifier we build is a simplified version of the classifier proposed in Antigoni Maria Founta, Despoina Chatzakou, Nicolas Kourtellis, Jeremy Blackburn, Athena Vakali, and Ilias Leontiadis. 2019. A Unified Deep Learning Architecture for Abuse Detection. In Proceedings of the 10th ACM Conference on Web Science (WebSci '19). https://doi.org/10.1145/3292522.3326028
 [https://dl.acm.org/doi/abs/10.1145/3292522.3326028, https://arxiv.org/abs/1802.00385]
 
 4) prepare the settings for the Differentially Private Federated Learning simulation
