@@ -22,7 +22,7 @@ The preprocessing steps are the following:
  8. removing numbers;
  9. removing English stop words;
 
-# 3. GloVe Word Vectors: 
+# 3. GloVe Word Vectors
 
 Visit the website (https://nlp.stanford.edu/projects/glove/) and download the pre-trained word vectors:
 Twitter (2B tweets, 27B tokens, 1.2M vocab, uncased, 25d, 50d, 100d, & 200d vectors, 1.42 GB download).
@@ -57,7 +57,9 @@ For (3) and (4) we follow the following tensorflow federated tutorials:
 1. for Federated Learning simulation https://www.tensorflow.org/federated/tutorials/federated_learning_for_image_classification 
 2. for the addition of Differential Privacy guarantees https://www.tensorflow.org/federated/tutorials/federated_learning_with_differential_privacy 
 
-# 5. Run the FL simulation multiple times and store the results of each repetition in a seperate file, using the script "run_multiple_times.py"
+# 5. Run the FL simulation multiple times 
+
+Using the script "run_multiple_times.py", we repeat the FL training simulation and store the results of each repetition in a seperate file to present aggregated performance evaluation results.
 
 
 
