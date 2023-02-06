@@ -43,7 +43,7 @@ The script FL_scrip.py contains the code used for:
 
 For (3) and (4) we follow the following tensorflow federated tutorials: 
 1. https://www.tensorflow.org/federated/tutorials/federated_learning_for_image_classification (for Federated Learning simulation)
-2. https://www.tensorflow.org/federated/tutorials/federated_learning_with_differential_privacy (for Differential Privacy)
+2. https://www.tensorflow.org/federated/tutorials/federated_learning_with_differential_privacy (for the addition of Differential Privacy guarantees)
 
 5. Run the FL simulation multiple times and store the results of each repetition in a seperate file, using the script "run_multiple_times.py"
 
