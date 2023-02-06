@@ -10,7 +10,7 @@ The datasets we used in our evaluation can be access after sending a request for
 the Abusive Dataset send an access request using the following link https://zenodo.org/record/3706866#.Y90_X-xBxJU.
 
 # 2. Data preprocessing
-The script preprocess_dataset.py contains the code used for preprocessing the tweet texts to prepare the data for the training task.
+The script **"preprocess_dataset.py"** contains the code used for preprocessing the tweet texts to prepare the data for the training task.
 The preprocessing steps are the following:
  1. removing tags;
  2. removing links;
@@ -30,7 +30,7 @@ Twitter (2B tweets, 27B tokens, 1.2M vocab, uncased, 25d, 50d, 100d, & 200d vect
 We use the 200d GloVe vectors in our simulation. So you need to unzip the downloaded file, and get the file path to the 200d vectors file which is used in the FL_script.py.
 
 # 4. Differential Private Federated Learing Simulation
-The script FL_scrip.py contains the code used for:  
+The script **"FL_scrip.py"** contains the code used for:  
 
 
 1) Splitting the preprocessed dataset to train and test sets;
@@ -54,10 +54,10 @@ The classifier we build is a simplified version of the classifier proposed in An
 6) evaluate the global model
 
 For (3) and (4) we follow the following tensorflow federated tutorials: 
-1. https://www.tensorflow.org/federated/tutorials/federated_learning_for_image_classification (for Federated Learning simulation)
-2. https://www.tensorflow.org/federated/tutorials/federated_learning_with_differential_privacy (for the addition of Differential Privacy guarantees)
+1. for Federated Learning simulation https://www.tensorflow.org/federated/tutorials/federated_learning_for_image_classification 
+2. for the addition of Differential Privacy guarantees https://www.tensorflow.org/federated/tutorials/federated_learning_with_differential_privacy 
 
-5. Run the FL simulation multiple times and store the results of each repetition in a seperate file, using the script "run_multiple_times.py"
+# 5. Run the FL simulation multiple times and store the results of each repetition in a seperate file, using the script "run_multiple_times.py"
 
 
 
