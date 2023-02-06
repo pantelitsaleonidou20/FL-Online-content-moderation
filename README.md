@@ -26,7 +26,8 @@ The preprocessing steps are the following:
 
 Visit the website (https://nlp.stanford.edu/projects/glove/) and download the pre-trained word vectors:
 Twitter (2B tweets, 27B tokens, 1.2M vocab, uncased, 25d, 50d, 100d, & 200d vectors, 1.42 GB download).
-We use the 200d GloVe vectors in our simulation.
+
+We use the 200d GloVe vectors in our simulation. So you need to unzip the downloaded file, and get the file path to the 200d vectors file which is used in the FL_script.py.
 
 # 4. Differential Private Federated Learing Simulation
 The script FL_scrip.py contains the code used for:
