@@ -1,7 +1,8 @@
 # FL Online content moderation
 
 This is the repository of the scripts used for the experimental evaluation of the work "Privacy–Preserving Online Content Moderation: A Federated
-Learning Use Case".
+Learning Use Case". 
+You can also find the perfomance evaluation results of the experimental evaluation of this work in the file "Results.zip", these are the results we used to create the plots in the paper.
 
 Steps:
 
