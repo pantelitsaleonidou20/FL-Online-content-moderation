@@ -1,18 +1,14 @@
 import pandas as pd
 import random
-#import spacy
 import numpy as np
 import math
-import seaborn as sns
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import seaborn as sns
-from importlib import reload
 import sys
 from importlib import reload
 import warnings
 import collections
-#import re
 import tensorflow_federated as tff
 import tensorflow as tf
 import tensorflow.keras as keras
@@ -56,7 +52,7 @@ SHUFFLE_BUFFER = 100
 # Federated Learning parameters
 NUM_ROUNDS = 11
 
-#DP variables
+#Differential Privacy variables
 noise_multiplier = 0.875
 clients_per_round = 25
 
@@ -149,10 +145,6 @@ def split_dataset(file):
     test_set_file = open('rep'+str(sys.argv[1])+"/test_set.csv", "a+")
     test_df.to_csv(test_set_file,index=False)  
 
-    #test_set_file.write("text,label\n")
-    #for index, row in test_df.iterrows():
-    #    test_set_file.write(str(row['text']) + "," + str(row['label']) + "\n")
-    #test_set_file.close()
 
     train_index = normal_index.union(aggressive_index)
     random.shuffle(list(train_index))
@@ -165,10 +157,6 @@ def split_dataset(file):
     train_set_file = open('rep'+str(sys.argv[1])+"/train_set.csv", "a+")
     train_df.to_csv(train_set_file,index=False)  
 
-    #train_set_file.write("text,label\n")
-    #for index, row in train_df.iterrows():
-    #    train_set_file.write(str(row['text']) + "," + str(row['label']) + "\n")
-    #train_set_file.close()
 
 
 
@@ -372,20 +360,19 @@ def performance_evaluation(y_test,y_pred_class,filename):
 def plot_metrics(train_metrics, valid_metrics):
     colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
     mpl.rcParams["figure.figsize"] = (12, 12)
-    metrics = [
-        "loss","accuracy"]
+    metrics = ["loss","accuracy"]
     for n, metric in enumerate(metrics):
 
         met = list()
         for i in train_metrics:
             met.append(float(i[metric]))
         name = metric.replace("_", " ").capitalize()
-        plt.subplot(2, 1, n + 1)
+        plt.subplot(3, 2, n + 1)
         met_valid = list()
         for valid in valid_metrics:
             met_valid.append(float(valid[metric]))
         name = metric.replace("_", " ").capitalize()
-        plt.subplot(2, 1, n + 1)
+        plt.subplot(3, 2, n + 1)
         x = np.arange(0, NUM_ROUNDS, 1)
 
         plt.plot(
@@ -407,12 +394,6 @@ def plot_metrics(train_metrics, valid_metrics):
             plt.ylim([0, plt.ylim()[1] * 1.2])
         elif metric == "accuracy":
             plt.ylim([0, 1])
-        #elif metric == "precision":
-        #    plt.ylim([0, 1])
-        #elif metric == "recall":
-        #    plt.ylim([0, 1])
-        #else:
-        #    plt.ylim([0, 1])
 
         plt.legend()
         plt.savefig("training_plots_"+str(sys.argv[1])+".png")  
@@ -446,7 +427,7 @@ def create_confusion_matrix(y_true, y_pred_class):
 
 
 #split original dataset to train and set -- create two csv files (train and test)
-#split_dataset(PREPROCESSED_DATASET_FILENAME)
+split_dataset(PREPROCESSED_DATASET_FILENAME)
 
 # distribute train data to clients to simulate a federated dataset
 clients_df=federated_clients()
@@ -630,7 +611,7 @@ for round_num in range(0, NUM_ROUNDS):
 
 
     train_metrics = OrderedDict([('accuracy', float(accuracy)),
-                                 ('loss', float(loss)),])
+                                 ('loss', float(loss))])
                                  
     history.append(train_metrics)
 
