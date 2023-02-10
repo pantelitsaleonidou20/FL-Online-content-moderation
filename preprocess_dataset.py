@@ -97,16 +97,7 @@ df=df.dropna()
 #remove columns we don't need
 df=df.drop(columns=['rate'])
 
-print(len(df))
-
-#print("spam len:",len(df[df['label']=="spam"]))
-print("abusive:",len(df[df['label']=="abusive"]))
-print("spam:",len(df[df['label']=="spam"]))
-print("hateful", len(df[df['label']=="hateful"]))
-print("normal len:",len(df[df['label']=="normal"]))
-
-
-#remove spam tweets from dataset
+#remove tweets labelled as spam -- we do not include spams in our definition of harmful content categories
 df = df[df['label'] != 'spam']
 
 #convert two binary classes 0-normal 1-inappropriate
@@ -114,39 +105,22 @@ df.loc[df['label'] == 'normal', 'label'] = 0
 df.loc[df['label'] == 'abusive', 'label'] = 1
 df.loc[df['label'] == 'hateful', 'label'] = 1
 
-    
-
-print("inappropriate: ", len(df[df['label'] == 1]) )
-print("normal: ", len(df[df['label'] == 0]) )
-
-
+#call function to clean the tweets
 df_clean=pd.DataFrame(columns=['text','label'])
-count=0
 for index, row in df.iterrows():
     row=pd.DataFrame([[row['text'],text_cleaning(row['text']),row['label']]],columns=["text","preprocessed_text","label"])
-    df_clean=pd.concat([df_clean, row])
-    count=count+1
-    if count % 100 ==0:
-        print(count)
+    df_clean=pd.concat([df_clean, row]) 
 
+#remove records with missing values    
 df=df_clean.dropna()
-print(len(df))
 
 #call function to remove words that only appears once
 df= remove_words_appear_only_once(df)
 
-#remove records with missing columns
-df=df.dropna()
-
-#remove empty strings/texts
+#remove records with missing values/empty values/nan
 df = df[df['preprocessed_text'] != '']
 df = df.replace('nan', np.nan)
 df = df.dropna()
-
-print("inappropriate:",len(df[df['label']==1]))
-print("normal:",len(df[df['label']==0]))
-print(len(df))
-
 
 df.to_csv("abusive_preprocessed_all.csv", index=False)
 
