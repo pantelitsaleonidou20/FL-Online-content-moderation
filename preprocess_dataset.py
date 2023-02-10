@@ -1,12 +1,12 @@
-nltk.download('punkt')
-nltk.download('stopwords')
+
 from nltk.corpus import stopwords
 import nltk
 from nltk.tokenize import word_tokenize
 import re
 import string
 import pandas as pd
-
+nltk.download('punkt')
+nltk.download('stopwords')
 # TEXT_CLEANING function: conducts text cleaning by:
 # 1. removing tags
 # 2. removing links
@@ -17,6 +17,7 @@ import pandas as pd
 # 7. removing white spaces other than single space
 # 8. removing numbers (again)
 # 9. removing English stop words
+# 10. remove words that appear only once (misspelled words)
 
 def text_cleaning(tweet_text):
     #print("preprocessing text is in process...")
@@ -70,18 +71,18 @@ def text_cleaning(tweet_text):
 def remove_words_appear_only_once(df):
     
     #join all text together and split by whitespaces
-    all_val = ' '.join(df['text']).split()
+    all_val = ' '.join(df['preprocessed_text']).split()
 
     #get unique values
     once = [x for x in all_val if all_val.count(x) == 1]
     #print("only once:\n",str(once))
 
     #remove from text by nested list comprehension
-    df['text'] = [' '.join([y for y in x.split() if y not in once]) for x in df['text']]
+    df['preprocessed_text'] = [' '.join([y for y in x.split() if y not in once]) for x in df['preprocessed_text']]
 
     #apply alternative
     #df['Text'] = df['Text'].apply(lambda x: ' '.join([y for y in x.split() if y not in once]))
-     return df
+    return df
 
 ###########################################################################################
 
@@ -115,20 +116,15 @@ df.loc[df['label'] == 'hateful', 'label'] = 1
 
     
 
-print("inappropriate:",len(df[df['label']==1]))
-print("normal:",len(df[df['label']==0]))
-
-
-#output_file = open("abusive_dataset_preprocessed.csv", "a+", encoding='utf-8')
-#output_file.write("text,label\n")
+print("inappropriate: ", len(df[df['label'] == 1]) )
+print("normal: ", len(df[df['label'] == 0]) )
 
 
 df_clean=pd.DataFrame(columns=['text','label'])
 count=0
 for index, row in df.iterrows():
-    #output_file.write(str(text_preprocessing(row['text'])) + "," + str(row['label'])+ "\n")
-    row=pd.DataFrame([[text_preprocessing(row['text']),row['label']]],columns=["text","label"])
-    df_clean=pd.concat([df_prep, row])
+    row=pd.DataFrame([[row['text'],text_cleaning(row['text']),row['label']]],columns=["text","preprocessed_text","label"])
+    df_clean=pd.concat([df_clean, row])
     count=count+1
     if count % 100 ==0:
         print(count)
@@ -139,17 +135,19 @@ print(len(df))
 #call function to remove words that only appears once
 df= remove_words_appear_only_once(df)
 
-
+#remove records with missing columns
 df=df.dropna()
-print("this is empty: ",len(df[df['text']=='']))
-df = df[df['text'] != '']
 
+#remove empty strings/texts
+df = df[df['preprocessed_text'] != '']
+df = df.replace('nan', np.nan)
+df = df.dropna()
 
 print("inappropriate:",len(df[df['label']==1]))
 print("normal:",len(df[df['label']==0]))
 print(len(df))
 
 
-df.to_csv("abusive_preprocessed.csv",index=False)
+df.to_csv("abusive_preprocessed_all.csv", index=False)
 
 exit(0)
