@@ -46,7 +46,7 @@ The script **"FL_scrip.py"** contains the code used for:
    - Classification Dense Layer with one neuron with the sigmoid activation function.
 
 The classifier we build is a simplified version of the classifier proposed in Antigoni Maria Founta, Despoina Chatzakou, Nicolas Kourtellis, Jeremy Blackburn, Athena Vakali, and Ilias Leontiadis. 2019. A Unified Deep Learning Architecture for Abuse Detection. In Proceedings of the 10th ACM Conference on Web Science (WebSci '19). https://doi.org/10.1145/3292522.3326028
-[https://dl.acm.org/doi/abs/10.1145/3292522.3326028, https://arxiv.org/abs/1802.00385]
+[https://dl.acm.org/doi/abs/10.1145/3292522.3326028, https://arxiv.org/abs/1802.00385]. For the specific hyperparameters and structure of the classifier see section "Text Classification Network".
 
 4) prepare the settings for the Differentially Private Federated Learning simulation
 
