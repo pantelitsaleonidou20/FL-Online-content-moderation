@@ -38,7 +38,7 @@ The script **"FL_scrip.py"** contains the code used for:
 
 2) Distribute the train data to a number of clients -- simulate the federated train set;
 
-3) Glove pretrained word vectors loading, prepare the GloVe embeddings for the Classifiers Embedding Layer
+3) Glove pretrained word vectors loading, prepare the GloVe embeddings for the Classifier's Embedding Layer
 
 4) Build the text classifier pipeline:
    - Embedding Layer (GloVe embeddings - 200d)
