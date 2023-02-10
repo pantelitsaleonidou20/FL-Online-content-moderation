@@ -37,6 +37,11 @@ from sklearn.metrics import (
     accuracy_score)
 
 
+#The classifier we build is a simplified version of the classifier proposed in Antigoni Maria Founta, Despoina Chatzakou, Nicolas Kourtellis, Jeremy Blackburn, Athena Vakali, and Ilias Leontiadis. 2019. 
+#A Unified Deep Learning Architecture for Abuse Detection. In Proceedings of the 10th ACM Conference on Web Science (WebSci '19). https://doi.org/10.1145/3292522.3326028
+[https://dl.acm.org/doi/abs/10.1145/3292522.3326028, https://arxiv.org/abs/1802.00385]. 
+#For the specific hyperparameters and structure of the classifier see section "Text Classification Network".
+
 MAX_FEATURES = 58439  # size of word index, set to the number of unique words in dataset
 EMBEDDING_DIM = 200
 MAX_LEN = 30  # average size of twitter text as used in the paper
