@@ -1,4 +1,4 @@
-# FL Online content moderation
+# Differentially Private Federated Learning for privacy-preserving Online content moderation
 
 This is the repository of the scripts used for the experimental evaluation of the work "Privacy–Preserving Online Content Moderation: A Federated
 Learning Use Case". 
